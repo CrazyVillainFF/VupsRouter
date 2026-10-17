@@ -1,0 +1,78 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id                  String               @id @default(uuid())
+  name                String
+  email               String               @unique
+  passwordHash        String
+  avatar              String?
+  role                String               @default("user")
+  createdAt           DateTime             @default(now())
+  updatedAt           DateTime             @updatedAt
+  chats               Chat[]
+  preferences         UserPreference?
+  passwordResetTokens PasswordResetToken[]
+}
+
+model UserPreference {
+  id              String   @id @default(uuid())
+  userId          String   @unique
+  user            User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  theme           String   @default("dark")
+  reducedMotion   Boolean  @default(false)
+  defaultModel    String   @default("deepseek/deepseek-r1:free")
+  defaultProvider String   @default("openrouter")
+  streamResponses Boolean  @default(true)
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+}
+
+model Chat {
+  id         String    @id @default(uuid())
+  userId     String
+  user       User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+  title      String    @default("New Conversation")
+  modelId    String
+  providerId String
+  pinned     Boolean   @default(false)
+  createdAt  DateTime  @default(now())
+  updatedAt  DateTime  @updatedAt
+  messages   Message[]
+
+  @@index([userId])
+}
+
+model Message {
+  id         String   @id @default(uuid())
+  chatId     String
+  chat       Chat     @relation(fields: [chatId], references: [id], onDelete: Cascade)
+  role       String
+  content    String
+  modelId    String?
+  providerId String?
+  tokens     Int?
+  metadata   String?
+  createdAt  DateTime @default(now())
+
+  @@index([chatId])
+}
+
+model PasswordResetToken {
+  id        String   @id @default(uuid())
+  userId    String
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  token     String   @unique
+  expiresAt DateTime
+  used      Boolean  @default(false)
+  createdAt DateTime @default(now())
+
+  @@index([userId])
+  @@index([token])
+}

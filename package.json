@@ -1,0 +1,22 @@
+{
+  "name": "vupsrouter",
+  "version": "1.0.0",
+  "description": "VupsRouter — Ultimate Full-Stack AI Model Hub",
+  "private": true,
+  "scripts": {
+    "dev": "concurrently \"npm run server:dev\" \"npm run client:dev\"",
+    "client": "npm run --prefix client dev",
+    "client:dev": "npm run --prefix client dev",
+    "client:build": "npm run --prefix client build",
+    "server": "npm run --prefix server dev",
+    "server:dev": "npm run --prefix server dev",
+    "server:start": "npm run --prefix server start",
+    "build": "npm run --prefix client build",
+    "start": "npm run --prefix server start",
+    "test": "npm run --prefix server test",
+    "lint": "npm run --prefix client lint"
+  },
+  "devDependencies": {
+    "concurrently": "^9.1.2"
+  }
+}

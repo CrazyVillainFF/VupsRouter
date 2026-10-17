@@ -1,0 +1,7 @@
+{
+  "$schema": "https://jsrepo.dev/schema.json",
+  "paths": {
+    "component": "src/components/animations",
+    "ui": "src/components/animations"
+  }
+}

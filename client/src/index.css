@@ -1,0 +1,185 @@
+:root {
+  /* Dark Theme Tokens (Default) */
+  --bg-space: #07080e;
+  --bg-card: rgba(14, 19, 31, 0.75);
+  --bg-card-hover: rgba(20, 27, 45, 0.85);
+  --surface-border: rgba(56, 189, 248, 0.16);
+  --surface-border-active: rgba(0, 240, 255, 0.45);
+
+  --accent-cyan: #00f0ff;
+  --accent-blue: #38bdf8;
+  --accent-indigo: #6366f1;
+  --accent-violet: #8b5cf6;
+  --accent-magenta: #d946ef;
+
+  --text-primary: #f8fafc;
+  --text-secondary: #94a3b8;
+  --text-muted: #64748b;
+
+  --glow-cyan: 0 0 24px rgba(0, 240, 255, 0.25);
+  --glow-violet: 0 0 28px rgba(139, 92, 246, 0.28);
+  --glow-core: 0 0 40px rgba(56, 189, 248, 0.35);
+
+  --font-display: 'Outfit', sans-serif;
+  --font-body: 'Inter', sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
+
+  /* Standard scrollbar-color property (Baseline Newly Available) */
+  scrollbar-color: rgba(56, 189, 248, 0.3) rgba(15, 23, 42, 0.6);
+  color-scheme: dark;
+}
+
+[data-theme='light'] {
+  --bg-space: #f1f5f9;
+  --bg-card: rgba(255, 255, 255, 0.88);
+  --bg-card-hover: rgba(248, 250, 252, 0.95);
+  --surface-border: rgba(15, 23, 42, 0.12);
+  --surface-border-active: rgba(2, 132, 199, 0.45);
+
+  --accent-cyan: #0284c7;
+  --accent-blue: #2563eb;
+  --accent-indigo: #4f46e5;
+  --accent-violet: #7c3aed;
+  --accent-magenta: #c026d3;
+
+  --text-primary: #0f172a;
+  --text-secondary: #475569;
+  --text-muted: #64748b;
+
+  --glow-cyan: 0 4px 14px rgba(2, 132, 199, 0.18);
+  --glow-violet: 0 4px 18px rgba(124, 58, 237, 0.18);
+  --glow-core: 0 4px 24px rgba(37, 99, 235, 0.2);
+
+  scrollbar-color: rgba(15, 23, 42, 0.25) rgba(241, 245, 249, 0.8);
+  color-scheme: light;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html, body, #root {
+  width: 100%;
+  min-height: 100vh;
+  background-color: var(--bg-space);
+  color: var(--text-primary);
+  font-family: var(--font-body);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+}
+
+/* Cybernetic Grid & Ambient Lighting Background */
+body {
+  background-image: 
+    radial-gradient(circle at 50% 0%, rgba(99, 102, 241, 0.14) 0%, transparent 60%),
+    radial-gradient(circle at 10% 30%, rgba(0, 240, 255, 0.08) 0%, transparent 40%),
+    radial-gradient(circle at 90% 70%, rgba(217, 70, 239, 0.08) 0%, transparent 45%),
+    linear-gradient(rgba(255, 255, 255, 0.02) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
+  background-size: 100% 100%, 100% 100%, 100% 100%, 48px 48px, 48px 48px;
+  background-position: 0 0, 0 0, 0 0, -1px -1px, -1px -1px;
+}
+
+/* Glassmorphism Classes */
+.glass-panel {
+  background: var(--bg-card);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid var(--surface-border);
+  border-radius: 16px;
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.glass-panel:hover {
+  border-color: var(--surface-border-active);
+  box-shadow: 0 8px 32px -8px rgba(0, 240, 255, 0.15);
+}
+
+.glass-card {
+  background: var(--bg-card);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid var(--surface-border);
+  border-radius: 14px;
+}
+
+/* Gradient Text */
+.gradient-text-cyan {
+  background: linear-gradient(135deg, #00f0ff 0%, #38bdf8 50%, #818cf8 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.gradient-text-aurora {
+  background: linear-gradient(135deg, #00f0ff 0%, #a855f7 50%, #ec4899 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* Code Syntax & Pre styling */
+pre, code {
+  font-family: var(--font-mono);
+}
+
+pre {
+  background: rgba(10, 14, 23, 0.9) !important;
+  border: 1px solid rgba(56, 189, 248, 0.2) !important;
+  border-radius: 10px;
+  padding: 14px 18px;
+  overflow-x: auto;
+  font-size: 0.88rem;
+  line-height: 1.55;
+}
+
+/* Markdown styling inside assistant replies */
+.markdown-content p {
+  margin-bottom: 0.9em;
+  line-height: 1.65;
+}
+
+.markdown-content p:last-child {
+  margin-bottom: 0;
+}
+
+.markdown-content ul, .markdown-content ol {
+  margin-left: 1.5em;
+  margin-bottom: 0.9em;
+}
+
+.markdown-content li {
+  margin-bottom: 0.35em;
+}
+
+.markdown-content h1, .markdown-content h2, .markdown-content h3 {
+  font-family: var(--font-display);
+  margin-top: 1.2em;
+  margin-bottom: 0.5em;
+  color: var(--text-primary);
+}
+
+/* Legacy Scrollbar Fallback for WebKit (modern-web-guidance) */
+@supports not (scrollbar-color: auto) {
+  ::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }
+  ::-webkit-scrollbar-track {
+    background: rgba(15, 23, 42, 0.6);
+  }
+  ::-webkit-scrollbar-thumb {
+    background: rgba(56, 189, 248, 0.25);
+    border-radius: 4px;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: rgba(0, 240, 255, 0.45);
+  }
+}
+
+/* Focus states for accessibility */
+button:focus-visible, a:focus-visible, input:focus-visible, textarea:focus-visible {
+  outline: 2px solid var(--accent-cyan);
+  outline-offset: 2px;
+}
